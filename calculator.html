@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Currency Converter</title>
+</head>
+<body>
+    <h1>Simple Currency Converter</h1>
+    <div>
+        <label for="amount">Amount:</label>
+        <input type="number" id="amount">
+    </div>
+    <div>
+        <label for="from">From:</label>
+        <select id="from">
+ <option value="IND">IND</option>
+            <option value="USD">USD</option>
+            <option value="EUR">EUR</option>
+            <option value="GBP">GBP</option>
+        </select>
+    </div>
+    <div>
+        <label for="to">To:</label>
+        <select id="to">
+<option value="IND">IND</option>
+            <option value="USD">USD</option>
+            <option value="EUR">EUR</option>
+            <option value="GBP">GBP</option>
+        </select>
+    </div>
+    <button onclick="convert()">Convert</button>
+    <div id="result"></div>
+
+    <script>
+        function convert() {
+            const amount = parseFloat(document.getElementById('amount').value);
+            const fromCurrency = document.getElementById('from').value;
+            const toCurrency = document.getElementById('to').value;
+            const exchangeRates = {
+'IND':{
+'IND':1,
+'USD':0.012,
+'EUR':0.011176,
+'GBP':0.0096},
+
+                'USD': {
+                    'IND':82.99,
+                    'USD': 1,
+                    'EUR': 0.85,
+                    'GBP': 0.73
+                },
+                'EUR': {
+'IND':89.43,
+                    'USD': 1.18,
+                    'EUR': 1,
+                    'GBP': 0.86
+                },
+                'GBP': {
+'IND':104.58,
+                    'USD': 1.37,
+                    'EUR': 1.17,
+                    'GBP': 1
+                }
+            };
+
+            const convertedAmount = amount * exchangeRates[fromCurrency][toCurrency];
+            document.getElementById('result').innerText = `${amount} ${fromCurrency} = ${convertedAmount.toFixed(2)} ${toCurrency}`;
+        }
+    </script>
+</body>
+</html>
